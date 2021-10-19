@@ -23,9 +23,10 @@ public class ProducerSample {
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         Producer<String, String> producer = new KafkaProducer<>(props);
 
-        // 创建和发生消息
+        // 构造消息
         ProducerRecord<String, String> record
                 = new ProducerRecord<>("SimpleTopic", "Hello, Kafka!");
+        // 发送消息
         producer.send(record);
 
         // 关闭消费者
