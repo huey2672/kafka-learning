@@ -1,6 +1,10 @@
 package com.huey.learning.kafka.quickstart;
 
-import org.apache.kafka.clients.consumer.*;
+import org.apache.kafka.clients.consumer.Consumer;
+import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 
 import java.time.Duration;
@@ -31,10 +35,9 @@ public class ConsumerSample {
         while (records == null || records.isEmpty()) {
             System.out.println("Waiting for records.");
             records = consumer.poll(Duration.ofSeconds(1));
-        }
-
-        for (ConsumerRecord<String, String> record : records) {
-            System.out.println(record.value());
+            for (ConsumerRecord<String, String> record : records) {
+                System.out.println(record.value());
+            }
         }
 
         // 关闭消费者
